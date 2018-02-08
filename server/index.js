@@ -4,7 +4,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var loginInfo = require('../database/loginInfo.js');
 var profileInfo = require('../database/profileInfo.js');
-var { retrieveLastEntry } = require('./helpers.js');
+var { retrieveLastEntry, retrieveLastUserNameId } = require('./helpers.js');
 var port = 3000;
 
 app.use(express.static(path.join(__dirname, '../client/dist/')));
@@ -18,7 +18,7 @@ app.post('/login/form1', (req, res) => {
       res.status(201).send('success');
     })
     .catch((error) => {
-      res.status(500).send('error');
+      res.sendStatus(500);
     });
 });
 
@@ -30,12 +30,10 @@ app.post('/profile/form2', (req, res) => {
     var newEntry = new profileInfo(dataObject);
     newEntry.save(null, {method: 'insert'})
       .then((success) => {
-        console.log('following data was saved', success);
         res.status(201).send('success');
       })
       .catch((error) => {
-        console.log('following error has occurd', error);
-        res.status(500).send('error');
+        res.sendStatus(500);
       });
   })
   .catch((error) => {
@@ -44,21 +42,21 @@ app.post('/profile/form2', (req, res) => {
 });
 
 app.post('/profile/form3', (req, res) => {
-  var fetchLastUserNameRow = retrieveLastEntry(loginInfo);
+  var currentUserNameID = retrieveLastUserNameId(loginInfo);
 
-  fetchLastUserNameRow.then((result) => {
-    profileInfo.where({userName_id: result.attributes.id})
-      .save(req.body, {method: 'update'})
-        .then((success) => {
-          res.status(201).send('success');
-        })
-        .catch((error) => {
-          res.sendStatus(500);
-        });
+  currentUserNameID.then((id) => {
+    profileInfo.where({userName_id: id})
+    .save(req.body, {method: 'update'})
+      .then((success) => {
+        res.status(201).send('success');
+      })
+      .catch((error) => {
+        res.sendStatus(500);
+      });
   })
   .catch((error) => {
     res.sendStatus(500);
-  });
+  }); 
 }); 
 
 app.listen(port);

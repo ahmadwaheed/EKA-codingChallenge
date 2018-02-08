@@ -18,7 +18,7 @@ exports.up = function(knex, Promise) {
       table.foreign('userName_id').references('loginInfo.id');
       table.string('firstName');
       table.string('lastName');
-      table.string('phoneNumber');
+      table.integer('phoneNumber');
       table.string('streetAddress');
       table.string('city');
       table.string('state')

@@ -6,7 +6,7 @@ export const updateStreetAddress = (data) => {
     payload: {
       streetAddress: data
     }
-  }
+  };
 };
 
 export const updateCity = (data) => {
@@ -15,7 +15,7 @@ export const updateCity = (data) => {
     payload: {
       city: data
     }
-  }
+  };
 };
 
 export const updateState = (data) => {
@@ -24,7 +24,7 @@ export const updateState = (data) => {
     payload: {
       state: data
     }
-  }
+  };
 };
 
 export const updateZipCode = (data) => {
@@ -33,7 +33,7 @@ export const updateZipCode = (data) => {
     payload: {
       zipCode: data
     }
-  }
+  };
 };
 
 export const sendPostRequest = (data) =>  {
@@ -52,6 +52,6 @@ export const sendPostRequest = (data) =>  {
   return {
     type: 'SEND_POST_RQUEST_FORM_THREE', 
     payload: request
-  }
+  };
 }
 

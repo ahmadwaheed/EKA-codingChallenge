@@ -1,7 +1,7 @@
 import React from 'react'; 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { updateUserName, updatePassword, updateEmail, sendPostRequest, toggleRedirect} from '../actions/formOneActionCreators.js';
+import { updateUserName, updatePassword, updateEmail, sendPostRequest} from '../actions/formOneActionCreators.js';
 import $ from 'jquery';
 import { BrowserRouter, Route} from "react-router-dom";
 import FormTwo from './FormTwo.jsx';
@@ -72,8 +72,7 @@ function mapStateToProps(state) {
   return {
     userName: state.userName, 
     password: state.password, 
-    email: state.email, 
-    redirect: state.redirect
+    email: state.email
   };
 }
 
@@ -82,8 +81,7 @@ function matchDisptachToProps(dispatch) {
     updateUserName: updateUserName, 
     updatePassword: updatePassword,
     updateEmail: updateEmail, 
-    sendPostRequest: sendPostRequest,
-    toggleRedirect: toggleRedirect
+    sendPostRequest: sendPostRequest
   }, dispatch);
 }
 

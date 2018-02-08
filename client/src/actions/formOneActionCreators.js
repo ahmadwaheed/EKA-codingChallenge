@@ -6,7 +6,7 @@ export const updateUserName = (data) => {
     payload: {
       userName: data
     }
-  }
+  };
 };
 
 export const updatePassword = (data) => {
@@ -15,7 +15,7 @@ export const updatePassword = (data) => {
     payload: {
       password: data
     }
-  }
+  };
 };
 
 export const updateEmail = (data) => {
@@ -24,15 +24,14 @@ export const updateEmail = (data) => {
     payload: {
       email: data
     }
-  }
+  };
 };
 
 export const toggleRedirect = () => {
   return {
     type: 'TOGGLE_REDIRECT' 
-  }
+  };
 }
-
 
 export const sendPostRequest = (data) =>  {
   var request = $.ajax({
@@ -49,5 +48,5 @@ export const sendPostRequest = (data) =>  {
   return {
     type: 'SEND_POST_RQUEST_FORM_ONE', 
     payload: request
-  }
+  };
 }

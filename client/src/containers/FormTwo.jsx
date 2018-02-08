@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route} from "react-router-dom";
 import FormThree from './FormThree.jsx';
-import { updateFirstName, updateLastName, updatePhoneNumber, sendPostRequest, toggleRedirect} from '../actions/formTwoActionCreators.js';
+import { updateFirstName, updateLastName, updatePhoneNumber, sendPostRequest} from '../actions/formTwoActionCreators.js';
 import $ from 'jquery';
 
 class FormTwo extends React.Component {
@@ -73,8 +73,7 @@ function mapStateToProps(state) {
   return {
     firstName: state.firstName, 
     lastName: state.lastName, 
-    phoneNumber: state.phoneNumber, 
-    redirect: state.redirect
+    phoneNumber: state.phoneNumber
   };
 }
 
@@ -83,8 +82,7 @@ function matchDisptachToProps(dispatch) {
     updateFirstName: updateFirstName, 
     updateLastName: updateLastName,
     updatePhoneNumber: updatePhoneNumber, 
-    sendPostRequest: sendPostRequest, 
-    toggleRedirect: toggleRedirect
+    sendPostRequest: sendPostRequest
   }, dispatch);
 }
 

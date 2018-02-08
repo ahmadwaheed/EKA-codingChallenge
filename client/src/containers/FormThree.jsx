@@ -5,7 +5,6 @@ import { BrowserRouter, Route} from "react-router-dom";
 import { updateStreetAddress, updateCity, updateState, updateZipCode, sendPostRequest} from '../actions/formThreeActionCreators.js';
 import $ from 'jquery';
 import App from '../components/App.jsx';
-import Main from '../components/index.jsx';
 
 class FormThree extends React.Component {
  constructor(props) {
@@ -13,7 +12,6 @@ class FormThree extends React.Component {
     this.state = {
       redirect3: false
     }
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }

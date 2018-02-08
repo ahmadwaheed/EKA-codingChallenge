@@ -9,5 +9,22 @@ const retrieveLastEntry = (model) => {
     });
 };
 
+const retrieveLastUserNameId = (model) => {
+  var fetchLastUserNameRow = retrieveLastEntry(model);
+
+  return fetchLastUserNameRow.then((result) => {
+    return result.attributes.id;
+  })
+  .catch((error) => {
+    return error;
+  });
+}
+
+
+
+
+
+
 exports.retrieveLastEntry = retrieveLastEntry;
+exports. retrieveLastUserNameId = retrieveLastUserNameId;
 
