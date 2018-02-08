@@ -11,7 +11,6 @@ app.use(express.static(path.join(__dirname, '../client/dist/')));
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true })); 
 
-
 app.post('/login/form1', (req, res) => {
   var newEntry = new loginInfo(req.body);
   newEntry.save(null, {method: 'insert'})
@@ -61,6 +60,5 @@ app.post('/profile/form3', (req, res) => {
     res.status(500);
   });
 }); 
-
 
 app.listen(port);
