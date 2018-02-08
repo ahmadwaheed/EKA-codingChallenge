@@ -1,0 +1,40 @@
+
+label{
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 250px;
+    text-align: right;
+}
+input {
+  display: inline-block;
+  float: left;
+}
+
+.form-one {
+  position: fixed;
+   top: 30%;
+   left: 45%;
+   transform: translate(-60%, -40%);
+}
+
+.form-two {
+  position: fixed;
+   top: 30%;
+   left: 45%;
+   transform: translate(-60%, -40%);
+}
+
+.form-three {
+  position: fixed;
+   top: 30%;
+   left: 45%;
+   transform: translate(-60%, -40%);
+}
+
+.submit {
+  position: fixed;
+  top: 95%;
+  left: 85%;
+  transform: translate(-60%, -40%);
+}

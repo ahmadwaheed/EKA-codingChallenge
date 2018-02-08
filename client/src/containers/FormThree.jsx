@@ -1,12 +1,18 @@
 import React from 'react'; 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { BrowserRouter, Route} from "react-router-dom";
 import { updateStreetAddress, updateCity, updateState, updateZipCode, sendPostRequest} from '../actions/formThreeActionCreators.js';
 import $ from 'jquery';
+import App from '../components/App.jsx';
+import Main from '../components/index.jsx';
 
 class FormThree extends React.Component {
  constructor(props) {
     super(props);
+    this.state = {
+      redirect3: false
+    }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,24 +44,36 @@ class FormThree extends React.Component {
       state: this.props.state, 
       zipCode: this.props.zipCode
     });
+
+    this.setState({redirect3: true});
   }
 
   render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Name:
-          <input type="text" id="street" onChange={() => this.handleChange('street')} />
-          <input type="text" id="city" onChange={() => this.handleChange('city')} />
-          <input type="text" id="state" onChange={() => this.handleChange('state')} />
-          <input type="text" id="zipCode" onChange={() => this.handleChange('zipCode')} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-    );
+    if (this.state.redirect3 === false) {
+      return (
+        <div className="form-three">
+        <form onSubmit={this.handleSubmit}>
+           <label>street address:</label><input type="text" id="street" onChange={() => this.handleChange('street')} /><br/>
+           <label>city:</label> <input type="text" id="city" onChange={() => this.handleChange('city')} /><br/>
+           <label>state:</label><input type="text" id="state" onChange={() => this.handleChange('state')} /><br/>
+           <label>zipCode:</label><input type="text" id="zipCode" onChange={() => this.handleChange('zipCode')} /><br/>
+          <input className="submit" type="submit" value="Submit" />
+        </form>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <BrowserRouter>
+            <div>
+              <Route component={App}/>
+            </div>
+          </BrowserRouter>
+        </div>
+      );
+    }
   }
 }
-
 
 function mapStateToProps(state) {
   return { 

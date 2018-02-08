@@ -27,6 +27,12 @@ export const updateEmail = (data) => {
   }
 };
 
+export const toggleRedirect = () => {
+  return {
+    type: 'TOGGLE_REDIRECT' 
+  }
+}
+
 
 export const sendPostRequest = (data) =>  {
   var request = $.ajax({

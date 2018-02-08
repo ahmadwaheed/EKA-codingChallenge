@@ -1,16 +1,22 @@
 import React from 'react'; 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { updateFirstName, updateLastName, updatePhoneNumber, sendPostRequest} from '../actions/formTwoActionCreators.js';
+import { BrowserRouter, Route} from "react-router-dom";
+import FormThree from './FormThree.jsx';
+import { updateFirstName, updateLastName, updatePhoneNumber, sendPostRequest, toggleRedirect} from '../actions/formTwoActionCreators.js';
 import $ from 'jquery';
 
 class FormTwo extends React.Component {
  constructor(props) {
     super(props);
+    this.state = {
+      redirect2: false
+    }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
 
   handleChange(event) {
     if (event === 'firstName') {
@@ -33,29 +39,42 @@ class FormTwo extends React.Component {
       lastName: this.props.lastName, 
       phoneNumber: this.props.phoneNumber
     });
+
+    this.setState({
+      redirect2: true
+    })
   }
 
   render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Name:
-          <input type="text" id="firstName" onChange={() => this.handleChange('firstName')} />
-          <input type="text" id="lastName" onChange={() => this.handleChange('lastName')} />
-          <input type="text" id="phoneNumber" onChange={() => this.handleChange('phoneNumber')} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-    );
+    if (this.state.redirect2 === false) {
+      return (
+        <div className="form-two">
+        <form onSubmit={this.handleSubmit}>
+            <label>first name:</label><input type="text" id="firstName" onChange={() => this.handleChange('firstName')} /><br/>
+            <label>last name:</label><input type="text" id="lastName" onChange={() => this.handleChange('lastName')} /><br/>
+           <label>phone number:</label> <input type="text" id="phoneNumber" onChange={() => this.handleChange('phoneNumber')} /><br/>
+          <input className="submit" type="submit" value="Submit" />
+        </form>
+        </div>
+      );
+     } else {
+      return (
+        <div>
+          <BrowserRouter>
+            <Route component={FormThree}/>
+          </BrowserRouter>
+        </div>
+      );
+    } 
   }
 }
-
 
 function mapStateToProps(state) {
   return {
     firstName: state.firstName, 
     lastName: state.lastName, 
-    phoneNumber: state.phoneNumber
+    phoneNumber: state.phoneNumber, 
+    redirect: state.redirect
   };
 }
 
@@ -64,7 +83,8 @@ function matchDisptachToProps(dispatch) {
     updateFirstName: updateFirstName, 
     updateLastName: updateLastName,
     updatePhoneNumber: updatePhoneNumber, 
-    sendPostRequest: sendPostRequest 
+    sendPostRequest: sendPostRequest, 
+    toggleRedirect: toggleRedirect
   }, dispatch);
 }
 

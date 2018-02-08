@@ -39,7 +39,7 @@ app.post('/profile/form2', (req, res) => {
       });
   })
   .catch((error) => {
-    res.status(500);
+    res.sendStatus(500);
   })
 });
 
@@ -53,11 +53,11 @@ app.post('/profile/form3', (req, res) => {
           res.status(201).send('success');
         })
         .catch((error) => {
-          res.send(500).send('error');
+          res.sendStatus(500);
         });
   })
   .catch((error) => {
-    res.status(500);
+    res.sendStatus(500);
   });
 }); 
 

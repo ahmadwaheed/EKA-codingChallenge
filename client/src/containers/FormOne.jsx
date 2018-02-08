@@ -1,12 +1,17 @@
 import React from 'react'; 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { updateUserName, updatePassword, updateEmail, sendPostRequest} from '../actions/formOneActionCreators.js';
+import { updateUserName, updatePassword, updateEmail, sendPostRequest, toggleRedirect} from '../actions/formOneActionCreators.js';
 import $ from 'jquery';
+import { BrowserRouter, Route} from "react-router-dom";
+import FormTwo from './FormTwo.jsx';
 
-class Login extends React.Component {
+class FormOne extends React.Component {
  constructor(props) {
     super(props);
+    this.state = {
+      redirect1: false 
+    }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,28 +38,42 @@ class Login extends React.Component {
       password: this.props.password, 
       email: this.props.email
     });
+
+    this.setState({ redirect1: true});
   }
 
   render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          <input type="text" id="userName" onChange={() => this.handleChange('userName')} />
-          <input type="text" id="password" onChange={() => this.handleChange('password')} />
-          <input type="text" id="email" onChange={() => this.handleChange('email')} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-    );
+    if (this.state.redirect1 === false) {
+      return (
+        <div className="form-one">
+        <form onSubmit={this.handleSubmit}>
+          <label>username:</label> <input type="text" id="userName" onChange={() => this.handleChange('userName')} /><br/>
+          <label>password: </label><input type="text" id="password" onChange={() => this.handleChange('password')} /><br/>
+          <label> email: </label> <input type="text" id="email" onChange={() => this.handleChange('email')} /><br/>
+          <input className="submit" type="submit" value="Submit" />
+        </form>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <BrowserRouter>
+            <div>
+              <Route component={FormTwo}/>
+            </div>
+          </BrowserRouter>
+        </div>
+      );
+    }
   }
 }
-
 
 function mapStateToProps(state) {
   return {
     userName: state.userName, 
     password: state.password, 
-    email: state.email
+    email: state.email, 
+    redirect: state.redirect
   };
 }
 
@@ -63,8 +82,9 @@ function matchDisptachToProps(dispatch) {
     updateUserName: updateUserName, 
     updatePassword: updatePassword,
     updateEmail: updateEmail, 
-    sendPostRequest: sendPostRequest 
+    sendPostRequest: sendPostRequest,
+    toggleRedirect: toggleRedirect
   }, dispatch);
 }
 
-export default connect(mapStateToProps, matchDisptachToProps)(Login);
+export default connect(mapStateToProps, matchDisptachToProps)(FormOne);

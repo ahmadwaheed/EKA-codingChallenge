@@ -11,7 +11,8 @@ var initialState = {
   streetAddress: '', 
   city: '', 
   state: '', 
-  zipCode: ''
+  zipCode: '', 
+  redirect: false
 };
 
 

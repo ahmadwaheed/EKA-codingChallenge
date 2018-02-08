@@ -39,6 +39,9 @@ export const mainReducer = (state, action) => {
     case "SEND_POST_RQUEST_FORM_THREE":
       return action.payload
 
+    case "TOGGLE_REDIRECT":
+      return Object.assign({}, state, {redirect: !state.redirect})
+
     default:
       return state
   }

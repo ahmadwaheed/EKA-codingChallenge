@@ -6,7 +6,7 @@ export const updateFirstName = (data) => {
     payload: {
       firstName: data
     }
-  }
+  };
 };
 
 export const updateLastName = (data) => {
@@ -15,7 +15,7 @@ export const updateLastName = (data) => {
     payload: {
       lastName: data
     }
-  }
+  };
 };
 
 export const updatePhoneNumber = (data) => {
@@ -24,8 +24,15 @@ export const updatePhoneNumber = (data) => {
     payload: {
       phoneNumber: data
     }
-  }
+  };
 };
+
+export const toggleRedirect = () => {
+  return {
+    type: 'TOGGLE_REDIRECT'
+  };
+};
+
 
 export const sendPostRequest = (data) =>  {
   var request = $.ajax({
@@ -43,8 +50,8 @@ export const sendPostRequest = (data) =>  {
   return {
     type: 'SEND_POST_RQUEST_FORM_TWO', 
     payload: request
-  }
-}
+  };
+};
 
 
 
