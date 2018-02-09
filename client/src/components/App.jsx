@@ -37,8 +37,8 @@ class App extends React.Component {
               iconElementRight={button}
             />
           </MuiThemeProvider>
-          <h2>Welcome</h2>
-          <h3>Please press signUp button to continue</h3>
+            <h2 align="center">Welcome!</h2>
+            <h3 align="center">Please press SIGNUP button to continue</h3>
         </div>
       );
     } else {
